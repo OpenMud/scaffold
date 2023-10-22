@@ -1,0 +1,16 @@
+.chat-dialog {
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    position: absolute;
+    padding: 20px;
+}
+
+.chat-message {
+}
+
+.chat-message p {
+    background-color: rgba(0,0,0,.5);
+    padding: 2px;
+    color: white;
+}

@@ -10,19 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@excaliburjs/plugin-aseprite": "^0.28.1",
     "@excaliburjs/testing": "0.25.1",
     "@microsoft/signalr": "^7.0.11",
-    "@mui/material": "^5.14.11",
+    "dompurify": "^3.0.6",
     "excalibur": "^0.28.1",
-    "openmud": "^1.0.3",
     "react": "^18.2.0",
     "react-command-palette": "^0.22.1",
     "react-dom": "^18.2.0",
-    "sweetalert2-react-content": "^5.0.7",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "openmud": "^3.1.0"
   },
   "devDependencies": {
     "parcel": "2.8.2",

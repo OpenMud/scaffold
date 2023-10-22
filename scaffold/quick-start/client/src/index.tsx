@@ -2,11 +2,12 @@ import { createRoot } from "react-dom/client";
 import { React } from 'react-dom';
 import { Dispatch, SetStateAction, memo, useEffect, useState } from 'react';
 
-import { Game } from './game'
+import { Game, WorldMessage } from './game'
 
-import { CommandBar } from 'openmud';
+import { CommandBar } from './gui/cmd';
 import { ICommandInteractionWidget, NetPlayerControlSystem } from "openmud";
 import { SvrActionableCommands } from "openmud";
+import { ChatLog } from './gui/chatlog';
 
 const container = document.getElementById("app");
 const root = createRoot(container)
@@ -89,12 +90,24 @@ const Viewport = memo(() => {
 
 export function App() {
     const [commands, setCommands] = useState<any>([]);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [activeChoice, setActiveChoice] = useState<any>(undefined);
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeChoice, setActiveChoice] = useState(undefined);
+
+    const [messageLog, setMessageLog] = useState([]);
+
+    function handleNewMessage(message: string) {
+        const newMessages = Array.from(messageLog).splice(-9);
+        newMessages.push(message);
+        console.log(newMessages);
+        setMessageLog(newMessages);
+    }
+
     useEffect(() => {
         actionListener.configureUpdateCommands(setCommands);
         actionListener.enableGameInput = !isOpen;
         actionListener.updateSelected(activeChoice);
+
+        game.worldMessage = handleNewMessage;
     });
 
     console.log(isOpen);
@@ -110,7 +123,8 @@ export function App() {
                     processCommand(cmd.choiceSelection, cmd.additionalText);
                 }}
             />
-            <Viewport />
+            <ChatLog log_messages={messageLog} />
+            <Viewport/>
         </>
     );
 }
