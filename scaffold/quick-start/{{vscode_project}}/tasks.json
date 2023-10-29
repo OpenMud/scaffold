@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "omd",
             "args": [
-                "build"
+                "build",
                 "--assets",
                 "--logic",
                 "--client"
